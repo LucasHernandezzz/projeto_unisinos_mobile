@@ -12,3 +12,9 @@ spring:
 server:
   error:
     include-stacktrace: never
+
+security:
+  jwt:
+    # use 32+ chars
+    secret: "a9F!2kLmP0sQzXyR7uVw#tBnE3hJ6dKc"
+    expiration-seconds: 3600
