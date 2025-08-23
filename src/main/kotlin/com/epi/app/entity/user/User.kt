@@ -14,13 +14,16 @@ data class User(
     @GeneratedValue
     @Column(name = "id")
     val id: Long? = null,
+
     @Column(name = "name")
     val name: String,
+
     @Column(name = "cpf")
     val cpf: String,
+
     @Column(name = "email")
     val email: String,
+
     @Column(name = "password")
     val password: String,
-
 )
