@@ -1,6 +1,6 @@
 package com.epi.app.service.user.dto
 
-data class UserCreateRequest(
+data class UserCreateDto(
     var name: String,
     var password: String,
     var email: String,

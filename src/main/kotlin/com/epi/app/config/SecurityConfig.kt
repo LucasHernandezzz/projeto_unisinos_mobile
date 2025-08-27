@@ -40,7 +40,7 @@ class SecurityConfig(
             .headers { it.frameOptions { f -> f.disable() } } // h2-console
             .sessionManagement { it.sessionCreationPolicy(SessionCreationPolicy.STATELESS) }
             .authorizeHttpRequests {
-                it.requestMatchers("/auth/**", "/h2-console/**").permitAll()
+                it.requestMatchers("/auth/**", "/h2-console/**", "/user/create").permitAll()
                 it.anyRequest().authenticated()
             }
             .authenticationProvider(authProvider())

@@ -1,9 +1,9 @@
 package com.epi.app.controller.form
 
 import com.epi.app.service.form.FormService
-import com.epi.app.service.form.dto.FormCreateRequest
+import com.epi.app.service.form.dto.FormCreateDto
 import com.epi.app.service.form.dto.FormResponseDto
-import com.epi.app.service.form.dto.FormUpdateRequest
+import com.epi.app.service.form.dto.FormUpdateDto
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
@@ -19,13 +19,13 @@ import org.springframework.web.bind.annotation.RestController
 class FormController(private val formService: FormService) {
 
     @PostMapping("/register")
-    fun registerForm(@RequestBody dto: FormCreateRequest): ResponseEntity<Any> {
+    fun registerForm(@RequestBody dto: FormCreateDto): ResponseEntity<Any> {
         formService.create(dto)
         return ResponseEntity.status(HttpStatus.CREATED).build()
     }
 
     @PutMapping("/{idFormulario}/assinar")
-    fun registerForm(@RequestBody dto: FormUpdateRequest, @PathVariable idFormulario: Long): ResponseEntity<Any> {
+    fun registerForm(@RequestBody dto: FormUpdateDto, @PathVariable idFormulario: Long): ResponseEntity<Any> {
         formService.updateUserToForm(idFormulario, dto)
         return ResponseEntity.status(HttpStatus.OK).build()
     }

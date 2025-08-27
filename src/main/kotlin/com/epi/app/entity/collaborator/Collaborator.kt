@@ -1,10 +1,10 @@
-package com.epi.app.entity.user
+package com.epi.app.entity.collaborator
 
 import jakarta.persistence.*
 
 @Entity
-@Table(name = "tb_users")
-data class User(
+@Table(name = "tb_collaborator_user")
+data class Collaborator(
 
     @Id
     @GeneratedValue
@@ -17,9 +17,6 @@ data class User(
     @Column(name = "cpf")
     val cpf: String,
 
-    @Column(name = "email")
-    val email: String,
-
-    @Column(name = "password")
-    val password: String,
+    @Column(name = "signature")
+    val signature: String,
 )

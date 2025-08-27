@@ -2,6 +2,7 @@ package com.epi.app.entity.form
 
 import com.epi.app.entity.user.User
 import com.epi.app.service.form.Enum.EpiState
+import io.micrometer.observation.Observation
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.EnumType
@@ -23,10 +24,14 @@ data class Form(
     @GeneratedValue
     @Column(name = "id")
     val id: Long? = null,
+    @Column(name = "description_activity")
+    val descriptionActivity: String,
     @Column(name = "use_mandatory")
     val useMandatory: Boolean,
     @Column(name = "use_Adequate")
     val useAdequate: Boolean,
+    @Column(name = "sector")
+    val sector: String,
     @Column(name = "state")
     @Enumerated(EnumType.STRING)
     val state: EpiState,
@@ -41,6 +46,10 @@ data class Form(
     val user: MutableList<User> = mutableListOf(),
     @Column(name = "date_register")
     val dateRegister: LocalDateTime,
+    @Column(name = "observation")
+    val observation: String,
+    @Column(name = "created_by")
+    val userId: Long,
     @Column(name = "count_signed")
     var countSigned: Int = 0,
     )
