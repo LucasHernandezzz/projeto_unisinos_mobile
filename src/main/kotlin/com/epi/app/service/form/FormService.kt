@@ -32,7 +32,7 @@ class FormService(val formRepository: FormRepository, val userService: UserServi
             userId = dto.userId,
             observation = dto.observation,
             sector = dto.sector,
-            collaborators = dto.collaboratorIds.toMutableList(),
+            collaboratorCpfs = dto.collaboratorCpf.toMutableList(),
             descriptionActivity = dto.descriptionActivity,
             inspectionDate = dto.inspectionDate,
             startTime = dto.startTime,
@@ -50,8 +50,8 @@ class FormService(val formRepository: FormRepository, val userService: UserServi
 
         val collaborator: Collaborator = collaboratorService.getEntityById(dto.collaboratorId)
 
-        if(!form.collaborators.contains(dto.collaboratorId)){
-            form.collaborators.add(dto.collaboratorId)
+        if(!form.collaboratorCpfs.contains(collaborator.cpf)){
+            form.collaboratorCpfs.add(collaborator.cpf)
             this.addCount(form)
         }
         return formRepository.save(form)

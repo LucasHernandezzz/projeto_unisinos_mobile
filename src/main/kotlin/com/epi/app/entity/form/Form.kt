@@ -52,9 +52,12 @@ data class Form(
     @Column(name = "notUseEpi")
     var notUseEpi: Number,
     @ElementCollection
-    @CollectionTable(name = "form_collaborators", joinColumns = [JoinColumn(name = "form_id")])
-    @Column(name = "collaborator_id")
-    val collaborators: MutableList<Long> = mutableListOf(),
+    @CollectionTable(
+        name = "form_collaborators",
+        joinColumns = [JoinColumn(name = "form_id")]
+    )
+    @Column(name = "collaborator_cpf")
+    val collaboratorCpfs: MutableList<String> = mutableListOf(),
     @Column(name = "date_register")
     val dateRegister: LocalDateTime,
     @Column(name = "observation")
