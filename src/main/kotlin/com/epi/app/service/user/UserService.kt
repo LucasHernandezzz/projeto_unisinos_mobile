@@ -39,4 +39,32 @@ class UserService(
         return userRepository.findById(id)
             .orElseThrow { Exception("Usuário com ID $id não encontrado") }
     }
+
+    fun getAllUsers(): List<UserResponseDto> {
+        println("📋 UserService: Buscando todos os usuários...")
+
+        val users = userRepository.findAll()
+        println("✅ UserService: Encontrados ${users.size} usuários no banco")
+
+        return users.map { user ->
+            UserResponseDto(
+                id = user.id ?: 0,
+                name = user.name,
+                email = user.email,
+                cpf = user.cpf
+            )
+        }
+    }
+
+    fun getUserByEmail(email: String): UserResponseDto {
+        val user = userRepository.findByEmail(email)
+            .orElseThrow { RuntimeException("Usuário com email '$email' não encontrado") }
+
+        return UserResponseDto(
+            id = user.id ?: 0,
+            name = user.name,
+            email = user.email,
+            cpf = user.cpf,
+        )
+    }
 }

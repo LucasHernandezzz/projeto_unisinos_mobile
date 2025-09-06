@@ -9,7 +9,9 @@ class UserMapper {
 
     fun toUserResponse(user: User): UserResponseDto {
         return UserResponseDto(
+            id = user.id ?: 0,
             name = user.name,
+            email = user.email,
             cpf = user.cpf
         )
     }

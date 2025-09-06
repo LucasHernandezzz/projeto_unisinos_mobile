@@ -2,6 +2,7 @@ package com.epi.app.entity.form
 
 import com.epi.app.entity.user.User
 import com.epi.app.service.form.Enum.EpiState
+import com.epi.app.service.form.Enum.EpiUse
 import io.micrometer.observation.Observation
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
@@ -27,16 +28,26 @@ data class Form(
     @Column(name = "description_activity")
     val descriptionActivity: String,
     @Column(name = "use_mandatory")
-    val useMandatory: Boolean,
+    val useMandatory: EpiUse,
     @Column(name = "use_Adequate")
-    val useAdequate: Boolean,
+    val useAdequate: EpiUse,
     @Column(name = "sector")
     val sector: String,
     @Column(name = "state")
     @Enumerated(EnumType.STRING)
     val state: EpiState,
     @Column(name = "place_adequate")
-    val adequatePlace: Boolean,
+    val adequatePlace: EpiUse,
+    @Column(name = "inspectionDate")
+    var inspectionDate: String,
+    @Column(name = "startTime")
+    var startTime: String,
+    @Column(name = "endTime")
+    var endTime: String,
+    @Column(name = "useEpi")
+    var useEpi: Number,
+    @Column(name = "notUseEpi")
+    var notUseEpi: Number,
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "tb_forms_users",
@@ -53,3 +64,4 @@ data class Form(
     @Column(name = "count_signed")
     var countSigned: Int = 0,
     )
+

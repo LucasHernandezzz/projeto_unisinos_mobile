@@ -4,5 +4,6 @@ data class CollaboratorCreateDto(
     var name: String,
     var email: String,
     var cpf: String,
-    var signature: String
+    var signature: String,
+    var idInspection: Long,
 )

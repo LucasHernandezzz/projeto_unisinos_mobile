@@ -31,6 +31,11 @@ class FormService(val formRepository: FormRepository, val userService: UserServi
             observation = dto.observation,
             sector = dto.sector,
             descriptionActivity = dto.descriptionActivity,
+            inspectionDate = dto.inspectionDate,
+            startTime = dto.startTime,
+            endTime = dto.endTime,
+            useEpi = dto.useEpi,
+            notUseEpi = dto.notUseEpi,
         )
         formRepository.save(form)
     }

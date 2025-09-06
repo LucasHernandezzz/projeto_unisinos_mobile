@@ -12,6 +12,7 @@ spring:
 server:
   error:
     include-stacktrace: never
+  port: 9000
 
 security:
   jwt:

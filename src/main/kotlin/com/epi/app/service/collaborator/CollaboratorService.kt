@@ -29,7 +29,8 @@ class CollaboratorService(
         val colab: Collaborator = Collaborator(
             name = dto.name,
             cpf = dto.cpf,
-             signature = dto.signature,
+            signature = dto.signature,
+            idInspection = dto.idInspection
         )
         collaboratorRepository.save(colab)
     }

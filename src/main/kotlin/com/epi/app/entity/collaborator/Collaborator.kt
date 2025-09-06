@@ -19,4 +19,7 @@ data class Collaborator(
 
     @Column(name = "signature")
     val signature: String,
+
+    @Column(name = "idInspection")
+    var idInspection: Long,
 )
