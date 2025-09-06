@@ -1,10 +1,13 @@
 package com.epi.app.entity.form
 
+import com.epi.app.entity.collaborator.Collaborator
 import com.epi.app.entity.user.User
 import com.epi.app.service.form.Enum.EpiState
 import com.epi.app.service.form.Enum.EpiUse
 import io.micrometer.observation.Observation
+import jakarta.persistence.CollectionTable
 import jakarta.persistence.Column
+import jakarta.persistence.ElementCollection
 import jakarta.persistence.Entity
 import jakarta.persistence.EnumType
 import jakarta.persistence.Enumerated
@@ -48,13 +51,10 @@ data class Form(
     var useEpi: Number,
     @Column(name = "notUseEpi")
     var notUseEpi: Number,
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-        name = "tb_forms_users",
-        joinColumns = [JoinColumn(name = "form_id")],
-        inverseJoinColumns = [JoinColumn(name = "user_id")]
-    )
-    val user: MutableList<User> = mutableListOf(),
+    @ElementCollection
+    @CollectionTable(name = "form_collaborators", joinColumns = [JoinColumn(name = "form_id")])
+    @Column(name = "collaborator_id")
+    val collaborators: MutableList<Long> = mutableListOf(),
     @Column(name = "date_register")
     val dateRegister: LocalDateTime,
     @Column(name = "observation")

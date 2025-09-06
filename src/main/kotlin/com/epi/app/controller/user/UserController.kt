@@ -37,10 +37,8 @@ class UserController(private val userService: UserService) {
 
     @GetMapping("/me")
     fun getCurrentUser(authentication: Authentication): ResponseEntity<UserResponseDto> {
-        // Obter email/username do token JWT
         val userEmail = authentication.name
 
-        // Buscar usuário pelo email
         val currentUser = userService.getUserByEmail(userEmail)
 
         return ResponseEntity.ok(currentUser)

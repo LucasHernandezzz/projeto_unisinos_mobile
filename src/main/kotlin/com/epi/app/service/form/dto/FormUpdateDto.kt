@@ -8,5 +8,5 @@ data class FormUpdateDto(
     var useAdequate: EpiUse,
     var state: EpiState,
     var adequatePlace: EpiUse,
-    var userId: Long,
+    var collaboratorId: Long,
 )

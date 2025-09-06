@@ -12,6 +12,7 @@ data class FormCreateDto(
     var observation: String,
     var descriptionActivity: String,
     var sector: String,
+    var collaboratorIds: List<Long>,
     var inspectionDate: String,
     var startTime: String,
     var endTime: String,

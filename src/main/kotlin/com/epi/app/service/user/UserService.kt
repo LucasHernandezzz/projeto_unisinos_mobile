@@ -41,11 +41,7 @@ class UserService(
     }
 
     fun getAllUsers(): List<UserResponseDto> {
-        println("📋 UserService: Buscando todos os usuários...")
-
         val users = userRepository.findAll()
-        println("✅ UserService: Encontrados ${users.size} usuários no banco")
-
         return users.map { user ->
             UserResponseDto(
                 id = user.id ?: 0,

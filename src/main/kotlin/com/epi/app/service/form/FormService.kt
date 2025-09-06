@@ -1,9 +1,11 @@
 package com.epi.app.service.form
 
+import com.epi.app.entity.collaborator.Collaborator
 import com.epi.app.entity.form.Form
 import com.epi.app.entity.user.User
 import com.epi.app.exceptions.ValidationException
 import com.epi.app.repository.form.FormRepository
+import com.epi.app.service.collaborator.CollaboratorService
 import com.epi.app.service.form.dto.FormCreateDto
 import com.epi.app.service.form.dto.FormResponseDto
 import com.epi.app.service.form.dto.FormUpdateDto
@@ -15,7 +17,7 @@ import org.springframework.stereotype.Service
 import java.time.LocalDateTime
 
 @Service
-class FormService(val formRepository: FormRepository, val userService: UserService, val mapper: FormMapper) {
+class FormService(val formRepository: FormRepository, val userService: UserService, val collaboratorService: CollaboratorService, val mapper: FormMapper) {
 
     fun create(dto: FormCreateDto) {
 
@@ -30,6 +32,7 @@ class FormService(val formRepository: FormRepository, val userService: UserServi
             userId = dto.userId,
             observation = dto.observation,
             sector = dto.sector,
+            collaborators = dto.collaboratorIds.toMutableList(),
             descriptionActivity = dto.descriptionActivity,
             inspectionDate = dto.inspectionDate,
             startTime = dto.startTime,
@@ -44,10 +47,11 @@ class FormService(val formRepository: FormRepository, val userService: UserServi
     fun updateUserToForm(idFormulario: Long, dto: FormUpdateDto): Form {
         val form = findById(idFormulario)
 
-        val user: User = userService.getEntityById(dto.userId)
 
-        if(!form.user.contains(user)){
-            form.user.add(user)
+        val collaborator: Collaborator = collaboratorService.getEntityById(dto.collaboratorId)
+
+        if(!form.collaborators.contains(dto.collaboratorId)){
+            form.collaborators.add(dto.collaboratorId)
             this.addCount(form)
         }
         return formRepository.save(form)
