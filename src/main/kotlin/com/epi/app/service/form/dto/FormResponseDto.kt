@@ -9,6 +9,7 @@ data class FormResponseDto(
     var useAdequate: EpiUse,
     var state: EpiState,
     var adequatePlace: EpiUse,
-    var count: Int
+    var count: Int,
+    var userId: Long
 )
 

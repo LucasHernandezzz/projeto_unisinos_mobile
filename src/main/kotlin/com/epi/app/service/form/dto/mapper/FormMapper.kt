@@ -14,6 +14,7 @@ class FormMapper {
             useAdequate = form.useAdequate,
             state = form.state,
             adequatePlace = form.adequatePlace,
+            userId =  form.userId,
             count = form.countSigned
         )
     }
