@@ -23,7 +23,7 @@ interface FormRepository : JpaRepository<Form, Long> {
       )
       AND MONTH(f.dateRegister) = MONTH(CURRENT_DATE)
       AND YEAR(f.dateRegister) = YEAR(CURRENT_DATE)
-    """
+    """, nativeQuery = true
     )
     fun countFormsWithNoUseAdequate(): Int
 
