@@ -2,6 +2,7 @@ package com.epi.app.controller.form
 
 import com.epi.app.service.form.FormService
 import com.epi.app.service.form.dto.FormCreateDto
+import com.epi.app.service.form.dto.FormNoAdequateDto
 import com.epi.app.service.form.dto.FormResponseDto
 import com.epi.app.service.form.dto.FormUpdateDto
 import org.springframework.http.HttpStatus
@@ -33,5 +34,10 @@ class FormController(private val formService: FormService) {
     @GetMapping()
     fun getAllForms(): List<FormResponseDto> {
         return formService.findAll()
+    }
+
+    @GetMapping("/count")
+    fun getFormsCount(): FormNoAdequateDto {
+        return formService.countForm()
     }
 }

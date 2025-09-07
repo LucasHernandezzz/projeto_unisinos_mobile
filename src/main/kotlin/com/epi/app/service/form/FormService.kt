@@ -7,6 +7,7 @@ import com.epi.app.exceptions.ValidationException
 import com.epi.app.repository.form.FormRepository
 import com.epi.app.service.collaborator.CollaboratorService
 import com.epi.app.service.form.dto.FormCreateDto
+import com.epi.app.service.form.dto.FormNoAdequateDto
 import com.epi.app.service.form.dto.FormResponseDto
 import com.epi.app.service.form.dto.FormUpdateDto
 import com.epi.app.service.form.dto.mapper.FormMapper
@@ -70,5 +71,15 @@ class FormService(val formRepository: FormRepository, val userService: UserServi
     private fun addCount(form: Form) {
         form.countSigned += 1
         formRepository.save(form)
+    }
+
+    public fun countForm(): FormNoAdequateDto {
+        val count = formRepository.countForms()
+        val countWithNoUseAdequate = formRepository.countFormsWithNoUseAdequate()
+
+        return FormNoAdequateDto(
+            count = count,
+            countNoAdequate = countWithNoUseAdequate
+        )
     }
 }

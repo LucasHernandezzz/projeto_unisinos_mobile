@@ -24,11 +24,6 @@ class SecurityConfig(
     private val userDetailsService: JpaUserDetailsService,
     private val corsConfigurationSource: CorsConfigurationSource
 ) {
-
-    init {
-        println("🔐 SecurityConfig foi carregado!")
-    }
-
     @Bean fun passwordEncoder(): PasswordEncoder = BCryptPasswordEncoder()
 
     @Bean
@@ -44,7 +39,6 @@ class SecurityConfig(
     @Bean
     fun filterChain(http: HttpSecurity): SecurityFilterChain {
         return http
-            // Habilitar CORS com a configuração personalizada
             .cors { cors ->
                 cors.configurationSource(corsConfigurationSource)
             }
